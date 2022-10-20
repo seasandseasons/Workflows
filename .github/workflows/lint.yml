@@ -1,0 +1,19 @@
+name: lint
+
+on: 
+  workflow_call:
+    
+jobs:
+  lint:
+
+    name: Lint code
+    runs-on: ubuntu-latest
+    
+    steps:        
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs the bicep CLI action to validate linter rules in bicepconfig.json
+      - name: Lint code
+        run: |
+          az bicep build --file ./deploy/main.bicep
